@@ -17,10 +17,6 @@ spec:
       {{- if .Values.application.labels }}
       {{- toYaml .Values.application.labels | nindent 6 }}
       {{- end }}
-  {{- if .Values.securityContext.pod }}
-  securityContext:
-  {{- toYaml .Values.securityContext.pod | nindent 4 }}
-  {{ end }}
   template:
     metadata:
       labels:
@@ -29,6 +25,10 @@ spec:
         {{- toYaml .Values.application.labels | nindent 8 }}
         {{- end }}
     spec:
+      {{- if .Values.securityContext.pod }}
+      securityContext:
+        {{- toYaml .Values.securityContext.pod | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ $name }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
