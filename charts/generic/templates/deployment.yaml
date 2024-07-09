@@ -45,6 +45,10 @@ spec:
           env:
           {{- toYaml .Values.env | nindent 12 }}
           {{- end }}
+          {{- if .Values.volumeMounts }}
+          volumeMounts:
+          {{- toYaml .Values.volumeMounts | nindent 12 }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.application.port }}
           {{- if .Values.application.health.enabled }}
@@ -55,3 +59,7 @@ spec:
             initialDelaySeconds: {{ .Values.application.health.initialDelaySeconds }}
             periodSeconds: {{ .Values.application.health.periodSeconds }}
           {{- end }}
+        {{- if .Values.volumes }}
+        volumes:
+        {{- toYaml .Values.volumes | nindent 10 }}
+        {{- end }}
