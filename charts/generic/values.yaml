@@ -39,4 +39,6 @@ ingress:
   labels: {}
   annotations: {}
 
-env: {}
+env: []
+volumeMounts: []
+volumes: []
