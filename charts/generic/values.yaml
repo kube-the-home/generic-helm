@@ -13,7 +13,7 @@ application:
     periodSeconds: 30
   labels: {}
 
-
+automountServiceAccountToken: false
 
 securityContext:
   pod: {}
