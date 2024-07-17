@@ -1,0 +1,28 @@
+image:
+  repository: nginx
+  tag: 1.26.1-perl
+
+application:
+  port: 8080
+
+
+clusterip:
+  enabled: true
+
+securityContext:
+  container:
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    capabilities:
+      drop:
+        - ALL
+    seccompProfile:
+      type: RuntimeDefault
+  pod:
+    runAsNonRoot: true
+    capabilities:
+      drop:
+        - ALL
+    seccompProfile:
+      type: RuntimeDefault
