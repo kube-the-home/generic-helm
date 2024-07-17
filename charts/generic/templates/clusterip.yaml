@@ -16,7 +16,7 @@ spec:
   selector:
     {{- $labels | nindent 4 }}
   ports:
-    - protocol: TCP
+    - protocol: {{ .Values.clusterip.protocol }}
       port: {{ .Values.clusterip.port }}
       targetPort: {{ .Values.application.port }}
 {{- end }}

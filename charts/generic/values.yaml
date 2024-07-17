@@ -29,6 +29,7 @@ nodePort:
 clusterip:
   enabled: false
   port: 8080
+  protocol: TCP
   labels: {}
 
 ingress:
