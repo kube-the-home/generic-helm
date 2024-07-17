@@ -11,8 +11,8 @@ If release name contains chart name it will be used as a full name.
 Compute the default labels to be set on all resources
 */}}
 {{- define "app.labels" -}}
-{{- if .Values.application.labels -}}
-{{- toYaml .Values.application.labels }}
+{{- if .Values.labels -}}
+{{- toYaml .Values.labels }}
 {{- else -}}
 app.kubernetes.io/name: {{ include "app.name" . }}
 app.kubernetes.io/version: {{ .Values.image.tag }}

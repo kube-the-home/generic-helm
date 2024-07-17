@@ -11,7 +11,7 @@ application:
     path: "/api/_health"
     initialDelaySeconds: 30
     periodSeconds: 30
-  labels: {}
+
   annotations: {}
 
 automountServiceAccountToken: false
@@ -41,6 +41,7 @@ ingress:
   labels: {}
   annotations: {}
 
+labels: {}
 env: []
 volumeMounts: []
 volumes: []
