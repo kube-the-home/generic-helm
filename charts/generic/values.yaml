@@ -12,6 +12,7 @@ application:
     initialDelaySeconds: 30
     periodSeconds: 30
   labels: {}
+  annotations: {}
 
 automountServiceAccountToken: false
 

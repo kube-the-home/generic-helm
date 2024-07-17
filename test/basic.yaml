@@ -1,8 +1,12 @@
 image:
   repository: nginx
   tag: 1.26.1-perl
+
 application:
   port: 80
+  annotations:
+    some: annotation
+
 resources:
   requests:
     memory: "250Mi"
@@ -10,6 +14,7 @@ resources:
   limits:
     memory: "350Mi"
     cpu: "200m"
+
 ingress:
   enabled: true
   host: web.example.com
@@ -19,6 +24,7 @@ ingress:
     - hosts:
         - web.example.com
       secretName: nginx-tls
+
 securityContext:
   container:
     allowPrivilegeEscalation: false
