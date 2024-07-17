@@ -14,8 +14,15 @@ Compute the default labels to be set on all resources
 {{- if .Values.labels -}}
 {{- toYaml .Values.labels }}
 {{- else -}}
-app.kubernetes.io/name: {{ include "app.name" . }}
 app.kubernetes.io/version: {{ .Values.image.tag }}
+{{- end }}
+{{ include "app.selectorLabels" . }}
+{{- end }}
+
+{{/*
+Compute the default labels to be set on all resources
+*/}}
+{{- define "app.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "app.name" . }}
 app.kubernetes.io/part-of: {{ include "app.name" . }}
-{{- end -}}
 {{- end }}

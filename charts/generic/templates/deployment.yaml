@@ -1,5 +1,6 @@
 {{- $name := include "app.name" . -}}
 {{- $labels := include "app.labels" . -}}
+{{- $selectorLabels := include "app.selectorLabels" . -}}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -15,7 +16,7 @@ spec:
   replicas: {{ .Values.application.replicas }}
   selector:
     matchLabels:
-      {{- $labels | nindent 6 }}
+      {{- $selectorLabels | nindent 6 }}
   template:
     metadata:
       labels:
