@@ -25,11 +25,5 @@ ingress:
         - web.example.com
       secretName: nginx-tls
 
-securityContext:
-  container:
-    allowPrivilegeEscalation: false
-    runAsNonRoot: true
-    readOnlyRootFilesystem: true
-    capabilities:
-      drop:
-        - ALL
+labels:
+  label1: value
