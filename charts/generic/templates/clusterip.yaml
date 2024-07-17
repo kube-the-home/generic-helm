@@ -1,5 +1,6 @@
 {{- $name := include "app.name" . -}}
 {{- $labels := include "app.labels" . -}}
+{{- $selectorLabels := include "app.selectorLabels" . -}}
 
 {{- if or .Values.clusterip.enabled .Values.ingress.enabled }}
 apiVersion: v1
@@ -14,7 +15,7 @@ metadata:
     {{- end }}
 spec:
   selector:
-    {{- $labels | nindent 4 }}
+    {{- $selectorLabels | nindent 4 }}
   ports:
     - protocol: {{ .Values.clusterip.protocol }}
       port: {{ .Values.clusterip.port }}
