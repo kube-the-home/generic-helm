@@ -1,29 +1,21 @@
 {{- $name := include "app.name" . -}}
+{{- $labels := include "app.labels" . -}}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $name }}
   labels:
-    app: {{ $name }}
-    {{- if .Values.application.labels }}
-    {{- toYaml .Values.application.labels | nindent 4 }}
-    {{- end }}
+    {{- $labels | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ $name }}
-      {{- if .Values.application.labels }}
-      {{- toYaml .Values.application.labels | nindent 6 }}
-      {{- end }}
+      {{- $labels | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ $name }}
-        {{- if .Values.application.labels }}
-        {{- toYaml .Values.application.labels | nindent 8 }}
-        {{- end }}
+        {{- $labels | nindent 8 }}
     spec:
       {{- if .Values.securityContext.pod }}
       securityContext:
