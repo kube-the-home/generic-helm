@@ -1,19 +1,22 @@
 {{- $name := include "app.name" . -}}
+{{- $labels := include "app.labels" . -}}
 
 {{- if .Values.nodePort.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ $name }}-nodeport
-  {{- if .Values.nodePort.labels }}
   labels:
+    {{- if .Values.nodePort.labels }}
     {{- toYaml .Values.nodePort.labels | nindent 4 }}
-  {{- end }}
+    {{ else }}
+    {{- $labels | nindent 4 }}
+    {{- end }}
 spec:
   type: NodePort
   ports:
    - port: {{ .Values.application.port }}
      nodePort: {{ .Values.nodePort.port }}
   selector:
-   app: {{ $name }}
+    {{- $labels | nindent 4 }}
 {{- end }}

@@ -1,0 +1,29 @@
+image:
+  repository: nginx
+  tag: 1.26.1-perl
+application:
+  port: 80
+resources:
+  requests:
+    memory: "250Mi"
+    cpu: "100m"
+  limits:
+    memory: "350Mi"
+    cpu: "200m"
+ingress:
+  enabled: true
+  host: web.example.com
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-issuer
+  tls:
+    - hosts:
+        - web.example.com
+      secretName: nginx-tls
+securityContext:
+  container:
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    capabilities:
+      drop:
+        - ALL
