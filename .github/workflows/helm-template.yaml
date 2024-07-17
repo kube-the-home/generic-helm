@@ -1,8 +1,7 @@
 name: Helm-Template
 on:
-  push:
+  pull_request:
     branches: ["main"]
-    paths: ["charts/argocd/**"]
 
 
 jobs:
