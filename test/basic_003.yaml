@@ -26,3 +26,6 @@ securityContext:
         - ALL
     seccompProfile:
       type: RuntimeDefault
+initContainers:
+  - name: "test"
+    image: busybox
