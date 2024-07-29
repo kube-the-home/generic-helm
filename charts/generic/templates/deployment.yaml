@@ -61,6 +61,10 @@ spec:
             initialDelaySeconds: {{ .Values.application.health.initialDelaySeconds }}
             periodSeconds: {{ .Values.application.health.periodSeconds }}
           {{- end }}
+      {{- if .Values.initContainers }}
+      initContainers:
+      {{- toYaml .Values.initContainers | nindent 8 }}
+      {{- end }}
       {{- if .Values.volumes }}
       volumes:
       {{- toYaml .Values.volumes | nindent 8 }}
