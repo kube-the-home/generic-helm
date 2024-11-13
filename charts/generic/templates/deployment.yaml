@@ -8,6 +8,7 @@ metadata:
   name: {{ $name }}
   labels:
     {{- $labels | nindent 4 }}
+    {{ .Values.application.additionalLabels | nindent 4 }}
   {{- if .Values.application.annotations }}
   annotations:
     {{- toYaml .Values.application.annotations | nindent 4 }}
@@ -21,6 +22,7 @@ spec:
     metadata:
       labels:
         {{- $labels | nindent 8 }}
+        {{ .Values.application.additionalLabels | nindent 8 }}
       {{- if .Values.application.annotations }}
       annotations:
         {{- toYaml .Values.application.annotations | nindent 8 }}
@@ -53,13 +55,35 @@ spec:
           {{- end }}
           ports:
             - containerPort: {{ .Values.application.port }}
-          {{- if .Values.application.health.enabled }}
-          livenessProbe:
+          {{- if .Values.application.probe.startup.enabled }}
+          startupProbe:
+            initialDelaySeconds: {{ .Values.application.probe.startup.initialDelaySeconds }}
+            periodSeconds: {{ .Values.application.probe.startup.periodSeconds }}
+            timeoutSeconds: {{ .Values.application.probe.startup.timeoutSeconds }}
+            failureThreshold: {{ .Values.application.probe.startup.failureThreshold }}
             httpGet:
-              path: {{ .Values.application.health.path }}
-              port: {{ .Values.application.port }}
-            initialDelaySeconds: {{ .Values.application.health.initialDelaySeconds }}
-            periodSeconds: {{ .Values.application.health.periodSeconds }}
+              path: {{ .Values.application.probe.startup.path | default .Values.application.probe.path }}
+              port: {{ .Values.application.probe.port | default .Values.application.port }}
+          {{- end }}
+          {{- if .Values.application.probe.liveness.enabled }}
+          livenessProbe:
+            initialDelaySeconds: {{ .Values.application.probe.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.application.probe.liveness.periodSeconds }}
+            timeoutSeconds: {{ .Values.application.probe.liveness.timeoutSeconds }}
+            failureThreshold: {{ .Values.application.probe.liveness.failureThreshold }}
+            httpGet:
+              path: {{ .Values.application.probe.liveness.path | default .Values.application.probe.path }}
+              port: {{ .Values.application.probe.port | default .Values.application.port }}
+          {{- end }}
+          {{- if .Values.application.probe.readiness.enabled }}
+          readinessProbe:
+            initialDelaySeconds: {{ .Values.application.probe.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.application.probe.readiness.periodSeconds }}
+            timeoutSeconds: {{ .Values.application.probe.readiness.timeoutSeconds }}
+            failureThreshold: {{ .Values.application.probe.readiness.failureThreshold }}
+            httpGet:
+              path: {{ .Values.application.probe.readiness.path | default .Values.application.probe.path }}
+              port: {{ .Values.application.probe.port | default .Values.application.port }}
           {{- end }}
       {{- if .Values.initContainers }}
       initContainers:

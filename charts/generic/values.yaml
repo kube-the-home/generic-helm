@@ -5,14 +5,45 @@ image:
   pullPolicy: "IfNotPresent"
 
 application:
-  port: ~
-  health:
-    enabled: false
-    path: "/api/_health"
-    initialDelaySeconds: 30
-    periodSeconds: 30
   replicas: 1
   annotations: {}
+
+  # -- additional labels to be placed on the deployment
+  additionalLabels: {}
+
+  # -- default port for the application
+  port: 8080
+
+  probe:
+    # -- Special port for probes, defaults to application.port if not set
+    port: ~
+    path: /api/_health
+    startup:
+      enabled: true
+      # -- path for startup probes, defaults to application.probe.path if not set
+      path: ~
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 60
+      failureThreshold: 12
+    readiness:
+      enabled: true
+      # -- path for readiness probes, defaults to application.probe.path if not set
+      path: ~
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+    liveness:
+      enabled: true
+      # -- path for liveness probes, defaults to application.probe.path if not set
+      path: ~
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+
+
 
 automountServiceAccountToken: false
 

@@ -4,6 +4,8 @@ image:
 
 application:
   port: 8080
+  additionalLabels:
+    test: true
 
 
 clusterip:
