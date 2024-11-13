@@ -8,7 +8,7 @@ metadata:
   name: {{ $name }}
   labels:
     {{- $labels | nindent 4 }}
-    {{ .Values.application.additionalLabels | nindent 4 }}
+    {{- toYaml .Values.application.additionalLabels | nindent 4 }}
   {{- if .Values.application.annotations }}
   annotations:
     {{- toYaml .Values.application.annotations | nindent 4 }}
@@ -22,7 +22,7 @@ spec:
     metadata:
       labels:
         {{- $labels | nindent 8 }}
-        {{ .Values.application.additionalLabels | nindent 8 }}
+        {{- toYaml .Values.application.additionalLabels | nindent 8 }}
       {{- if .Values.application.annotations }}
       annotations:
         {{- toYaml .Values.application.annotations | nindent 8 }}
