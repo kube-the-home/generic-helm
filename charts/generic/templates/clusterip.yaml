@@ -2,7 +2,7 @@
 {{- $labels := include "app.labels" . -}}
 {{- $selectorLabels := include "app.selectorLabels" . -}}
 
-{{- if or .Values.clusterip.enabled .Values.ingress.enabled }}
+{{- if or .Values.clusterip.enabled .Values.ingress.enabled .Values.route.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
