@@ -72,6 +72,13 @@ ingress:
   labels: {}
   annotations: {}
 
+route:
+  enabled: false
+  annotations: {}
+  labels: {}
+  hostnames: []
+  parentRefs: []
+
 labels: {}
 env: []
 volumeMounts: []

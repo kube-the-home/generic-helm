@@ -25,5 +25,14 @@ ingress:
         - web.example.com
       secretName: nginx-tls
 
+route:
+  enabled: true
+  hostnames:
+    - web.example.com
+  parentRefs:
+    - name: cilium-gateway
+      namespace: cilium
+  annotations:
+    annotation1: value
 labels:
   label1: value
