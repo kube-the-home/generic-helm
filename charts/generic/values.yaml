@@ -6,6 +6,7 @@ image:
 
 application:
   replicas: 1
+  revisionHistoryLimit: 1
   annotations: {}
 
   # -- additional labels to be placed on the deployment
