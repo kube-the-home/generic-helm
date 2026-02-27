@@ -4,6 +4,8 @@ image:
   tag: ~
   pullPolicy: "IfNotPresent"
 
+imagePullSecrets: []
+
 application:
   replicas: 1
   revisionHistoryLimit: 1

@@ -37,6 +37,10 @@ spec:
       securityContext:
         {{- toYaml .Values.securityContext.pod | nindent 8 }}
       {{- end }}
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+      {{- end }}
       automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
       containers:
         - name: {{ $name }}
