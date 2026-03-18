@@ -18,6 +18,12 @@ metadata:
 spec:
   replicas: {{ .Values.application.replicas }}
   revisionHistoryLimit: {{ .Values.application.revisionHistoryLimit }}
+  strategy:
+    type: {{ .Values.application.strategy }}
+    {{- if eq .Values.application.strategy "RollingUpdate" }}
+    rollingUpdate:
+      {{- toYaml .Values.application.rollingUpdate | nindent 6 }}
+    {{- end }}
   selector:
     matchLabels:
       {{- $selectorLabels | nindent 6 }}

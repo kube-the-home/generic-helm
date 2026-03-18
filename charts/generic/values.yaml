@@ -11,6 +11,11 @@ application:
   revisionHistoryLimit: 1
   annotations: {}
 
+  strategy: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+
   # -- additional labels to be placed on the deployment
   additionalLabels: {}
 
