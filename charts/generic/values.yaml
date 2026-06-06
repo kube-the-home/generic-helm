@@ -61,11 +61,6 @@ securityContext:
 
 resources: {}
 
-nodePort:
-  enabled: false
-  port: ~
-  labels: {}
-
 clusterip:
   enabled: false
   port: 8080

@@ -6,10 +6,6 @@ application:
   port: 8080
 
 
-nodePort:
-  enabled: true
-  port: 35035
-
 securityContext:
   container:
     allowPrivilegeEscalation: false
