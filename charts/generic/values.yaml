@@ -82,6 +82,17 @@ route:
   hostnames: []
   parentRefs: []
 
+persistence:
+  enabled: false
+  # -- use an existing PVC instead of creating a new one
+  existingClaim: ~
+  storageClassName: ~
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+  mountPath: /data
+  annotations: {}
+
 labels: {}
 env: []
 volumeMounts: []

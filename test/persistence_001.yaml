@@ -1,0 +1,12 @@
+image:
+  repository: nginx
+  tag: 1.26.1-perl
+
+application:
+  port: 80
+
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClassName: standard
+  mountPath: /var/data
