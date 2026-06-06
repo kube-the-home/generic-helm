@@ -7,32 +7,18 @@ on:
 
 jobs:
   release:
-    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
-    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
+    uses: kube-the-home/github-actions/.github/workflows/semantic-release.yaml@c39f5628086cb9bc466b19a6138b0c8a5232ce08 # v1.0.1
+    secrets:
+      APP_ID: ${{ secrets.RELEASE_APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PEM }}
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Install Helm Docs
-        uses: gabe565/setup-helm-docs-action@v1
-
-      - name: Run Helm Docs
-        run: helm-docs
-        
-      - name: Install Helm
-        uses: azure/setup-helm@v4
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  helm:
+    needs: release
+    if: needs.release.outputs.new_version != ''
+    uses: kube-the-home/github-actions/.github/workflows/helm-release.yaml@c39f5628086cb9bc466b19a6138b0c8a5232ce08 # v1.0.1
+    with:
+      chart_path: charts/generic
+      version: ${{ needs.release.outputs.new_version }}
+    secrets:
+      APP_ID: ${{ secrets.RELEASE_APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PEM }}
