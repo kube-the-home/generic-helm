@@ -1,0 +1,15 @@
+name: Helm
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    uses: kube-the-home/github-actions/.github/workflows/helm-lint.yaml@c39f5628086cb9bc466b19a6138b0c8a5232ce08 # v1.0.1
+    with:
+      chart_path: charts/system-upgrade-controller
