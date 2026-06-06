@@ -32,6 +32,6 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: {{ $name }}-clusterip
+        - name: {{ $name }}
           port: {{ .Values.clusterip.port }}
 {{- end }}
