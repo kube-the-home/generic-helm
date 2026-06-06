@@ -27,7 +27,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $name }}-clusterip
+                name: {{ $name }}
                 port:
                   number: {{ .Values.clusterip.port }}
   {{- if .Values.ingress.tls }}
