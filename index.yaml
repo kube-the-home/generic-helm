@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   generic:
   - apiVersion: v2
+    created: "2026-08-11T11:22:08.689131269Z"
+    description: A generic Helm Chart to deploy your application to kubernetes
+    digest: 991e7c81896a7ce1e97b9bfd86e1f3e34b9119db2d0301664651191ac30548cc
+    name: generic
+    type: application
+    urls:
+    - https://github.com/kube-the-home/generic-helm/releases/download/generic-2.5.0/generic-2.5.0.tgz
+    version: 2.5.0
+  - apiVersion: v2
     created: "2026-06-06T07:25:15.774275981Z"
     description: A generic Helm Chart to deploy your application to kubernetes
     digest: 98d65baebb0f5fd141a58b0c34ffcc16e9cf9c975090b93bcd895c1301ac3328
@@ -154,4 +163,4 @@ entries:
     urls:
     - https://github.com/kube-the-home/generic-helm/releases/download/generic-0.1.0/generic-0.1.0.tgz
     version: 0.1.0
-generated: "2026-06-06T07:25:15.774378564Z"
+generated: "2026-08-11T11:22:08.689249846Z"
