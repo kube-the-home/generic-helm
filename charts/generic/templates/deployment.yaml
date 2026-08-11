@@ -52,6 +52,14 @@ spec:
         - name: {{ $name }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.application.command }}
+          command:
+          {{- toYaml .Values.application.command | nindent 12 }}
+          {{- end }}
+          {{- if .Values.application.args }}
+          args:
+          {{- toYaml .Values.application.args | nindent 12 }}
+          {{- end }}
           {{- if .Values.securityContext.container }}
           securityContext:
           {{- toYaml .Values.securityContext.container | nindent 12 }}

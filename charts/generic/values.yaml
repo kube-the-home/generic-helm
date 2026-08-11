@@ -16,6 +16,12 @@ application:
     maxSurge: 1
     maxUnavailable: 0
 
+  # -- override the container entrypoint
+  command: []
+
+  # -- override the container command arguments
+  args: []
+
   # -- additional labels to be placed on the deployment
   additionalLabels: {}
 
