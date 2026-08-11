@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/kube-the-home/generic-helm/compare/2.4.0...2.5.0) (2026-08-11)
+
+
+### Features
+
+* adding command and args for container ([c9153c2](https://github.com/kube-the-home/generic-helm/commit/c9153c286f24d4aa1d395c42680dc2057195a4bf))
+
 # [2.4.0](https://github.com/kube-the-home/generic-helm/compare/2.3.0...2.4.0) (2026-06-06)
 
 
