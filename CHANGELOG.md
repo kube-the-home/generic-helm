@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/kube-the-home/generic-helm/compare/2.5.0...2.6.0) (2026-08-14)
+
+
+### Features
+
+* adding configMaps with  auto mount ([b528087](https://github.com/kube-the-home/generic-helm/commit/b528087bd33b3ac2f12b7b4f7ab521e1fb209059))
+
 # [2.5.0](https://github.com/kube-the-home/generic-helm/compare/2.4.0...2.5.0) (2026-08-11)
 
 
