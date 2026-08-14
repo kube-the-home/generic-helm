@@ -1,0 +1,20 @@
+image:
+  repository: nginx
+  tag: 1.26.1
+
+application:
+  port: 80
+
+configMaps:
+  - name: app-config
+    data:
+      config.yaml: |
+        key: value
+      settings.ini: |
+        [section]
+        key=value
+  - name: feature-flags
+    mountPath: /config/flags
+    data:
+      flags.json: |
+        {"feature_x": true}

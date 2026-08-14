@@ -1,0 +1,13 @@
+{{- $name := include "app.name" . -}}
+{{- $labels := include "app.labels" . -}}
+{{- range .Values.configMaps }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $name }}-{{ .name }}
+  labels:
+    {{- $labels | nindent 4 }}
+data:
+  {{- toYaml .data | nindent 2 }}
+{{- end }}

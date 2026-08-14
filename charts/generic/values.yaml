@@ -104,3 +104,13 @@ env: []
 volumeMounts: []
 volumes: []
 initContainers: []
+
+# -- inline ConfigMaps to create and mount into the container
+# Each entry creates a ConfigMap and mounts it at mountPath (defaults to /config/<name>)
+# configMaps:
+#   - name: myconfig
+#     mountPath: /config/myconfig  # optional
+#     data:
+#       key1: value1
+#       key2: value2
+configMaps: []

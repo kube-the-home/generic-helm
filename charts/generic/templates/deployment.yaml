@@ -72,7 +72,7 @@ spec:
           env:
           {{- toYaml .Values.env | nindent 12 }}
           {{- end }}
-          {{- if or .Values.volumeMounts .Values.persistence.enabled }}
+          {{- if or .Values.volumeMounts .Values.persistence.enabled .Values.configMaps }}
           volumeMounts:
           {{- if .Values.volumeMounts }}
           {{- toYaml .Values.volumeMounts | nindent 12 }}
@@ -80,6 +80,11 @@ spec:
           {{- if .Values.persistence.enabled }}
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
+          {{- end }}
+          {{- range .Values.configMaps }}
+            - name: configmap-{{ .name }}
+              mountPath: {{ .mountPath | default (printf "/config/%s" .name) }}
+              readOnly: true
           {{- end }}
           {{- end }}
           ports:
@@ -118,7 +123,7 @@ spec:
       initContainers:
       {{- toYaml .Values.initContainers | nindent 8 }}
       {{- end }}
-      {{- if or .Values.volumes .Values.persistence.enabled }}
+      {{- if or .Values.volumes .Values.persistence.enabled .Values.configMaps }}
       volumes:
       {{- if .Values.volumes }}
       {{- toYaml .Values.volumes | nindent 8 }}
@@ -127,5 +132,10 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "app.name" .) }}
+      {{- end }}
+      {{- range .Values.configMaps }}
+        - name: configmap-{{ .name }}
+          configMap:
+            name: {{ $name }}-{{ .name }}
       {{- end }}
       {{- end }}
