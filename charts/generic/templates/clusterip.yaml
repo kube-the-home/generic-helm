@@ -17,7 +17,14 @@ spec:
   selector:
     {{- $selectorLabels | nindent 4 }}
   ports:
-    - protocol: {{ .Values.clusterip.protocol }}
+    - name: http
+      protocol: {{ .Values.clusterip.protocol }}
       port: {{ .Values.clusterip.port }}
       targetPort: {{ .Values.application.port }}
+    {{- if and .Values.serviceMonitor.enabled .Values.serviceMonitor.metricsPort }}
+    - name: metrics
+      protocol: TCP
+      port: {{ .Values.serviceMonitor.metricsPort }}
+      targetPort: {{ .Values.serviceMonitor.metricsPort }}
+    {{- end }}
 {{- end }}

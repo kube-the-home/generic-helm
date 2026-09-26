@@ -105,6 +105,28 @@ volumeMounts: []
 volumes: []
 initContainers: []
 
+serviceMonitor:
+  enabled: false
+  # -- additional labels to add to the ServiceMonitor (e.g. for Prometheus operator label selectors)
+  labels: {}
+  # -- separate port for metrics (e.g. 9090); when set, a "metrics" named port is added to the Service
+  # and the ServiceMonitor references it automatically — leave unset to scrape the main "http" port
+  metricsPort: ~
+  # -- named port on the Service to scrape; auto-resolved to "metrics" when metricsPort is set
+  port: http
+  # -- metrics path
+  path: /metrics
+  # -- scrape interval
+  interval: 30s
+  # -- scrape timeout (defaults to Prometheus global if unset)
+  scrapeTimeout: ~
+  # -- http or https
+  scheme: ~
+  # -- TLS config for https scraping
+  tlsConfig: {}
+  # -- relabeling rules
+  relabelings: []
+
 # -- inline ConfigMaps to create and mount into the container
 # Each entry creates a ConfigMap and mounts it at mountPath (defaults to /config/<name>)
 # configMaps:
