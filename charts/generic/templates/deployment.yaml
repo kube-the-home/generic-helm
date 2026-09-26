@@ -34,9 +34,14 @@ spec:
         {{- if .Values.application.additionalLabels }}
         {{- toYaml .Values.application.additionalLabels | nindent 8 }}
         {{- end }}
-      {{- if .Values.application.annotations }}
+      {{- if or .Values.application.annotations .Values.configMaps }}
       annotations:
+        {{- if .Values.application.annotations }}
         {{- toYaml .Values.application.annotations | nindent 8 }}
+        {{- end }}
+        {{- if .Values.configMaps }}
+        checksum/configmaps: {{ .Values.configMaps | toJson | sha256sum }}
+        {{- end }}
       {{- end }}
     spec:
       {{- if .Values.securityContext.pod }}
