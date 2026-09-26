@@ -1,3 +1,15 @@
+# [2.7.0](https://github.com/kube-the-home/generic-helm/compare/2.6.0...2.7.0) (2026-09-26)
+
+
+### Bug Fixes
+
+* **configmaps:** adding configmap checksum to deployment ([24aab4b](https://github.com/kube-the-home/generic-helm/commit/24aab4b2a086e3de37b38c2f2cb6ee4463c708f8))
+
+
+### Features
+
+* **metrics:** adding optional servicemonitor ([cae571c](https://github.com/kube-the-home/generic-helm/commit/cae571ca1a602bbc08780ea0f499a7a2933f0a22))
+
 # [2.6.0](https://github.com/kube-the-home/generic-helm/compare/2.5.0...2.6.0) (2026-08-14)
 
 
